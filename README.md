@@ -126,7 +126,7 @@ This integration is based on Gauss–Laguerre quadrature, which is an extension 
 ![GitHub Logo](/pictures/06.png)  
 This method is clearly listed on Wiki Link:[Gauss–Laguerre quadrature](https://en.wikipedia.org/wiki/Gauss%E2%80%93Laguerre_quadrature). We set the order of  Laguerre polynomial Ln(x) to be 5.
 
-**Examples:**
+**Examples:**  
 ![GitHub Logo](/pictures/07.png) 
 ![GitHub Logo](/pictures/08.png)
 
