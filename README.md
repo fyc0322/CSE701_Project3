@@ -114,7 +114,7 @@ This function is used to calculate the integration of formula expr_i from a to b
 **Algorithms:**  
 The integration is based on the trapezoidal rule and its principle is clearly listed on Wiki Link:[trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule).
 
-**Examples:**
+**Examples:**  
 ![GitHub Logo](/pictures/02.png) 
 ![GitHub Logo](/pictures/03.png)
 
@@ -157,7 +157,7 @@ This function is organized to get first n coefficients of Fourier series and the
 **Algorithms:**  
 The introduction of Fourier series is clearly listed on Wiki Link:[Fourier series](https://en.wikipedia.org/wiki/Fourier_series).
 
-Examples:  
+**Examples:**    
 ![GitHub Logo](/pictures/015.png)
 ![GitHub Logo](/pictures/016.png)
 
@@ -167,7 +167,7 @@ fft is used to do the Fast Fourier Transform. n=2k is the number of sample point
 **Algorithms:**  
 Please see Wiki Link:[FFT](https://en.wikipedia.org/wiki/Fast_Fourier_transform) to check how to do FFT.
   
-Examples:  
+**Examples:**    
 ![GitHub Logo](/pictures/017.png)
 ![GitHub Logo](/pictures/018.png)
 
@@ -181,14 +181,14 @@ For generating a bunch of random numbers that has average u and variance σ=g^2 
 ![GitHub Logo](/pictures/023.png)
 ![GitHub Logo](/pictures/024.png)
   
-Examples:  
+**Examples:**    
 ![GitHub Logo](/pictures/020.png)
 ![GitHub Logo](/pictures/021.png)
 
 ### void value(double a, double b,double h)
 This function is used to get the numerical value of orig in class Calculator.
 
-Examples:  
+**Examples:**    
 ![GitHub Logo](/pictures/01.png)
 ![GitHub Logo](/pictures/025.png)
 
