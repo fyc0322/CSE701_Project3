@@ -104,7 +104,7 @@ This function is used to get the numerical value of formula “cal_expr” at po
 **Algorithms:**  
 The underlying mechanism of reading expressions from text is based on an operand stack and an operator stack. It calls readToken() to read and classify each word from input.txt, calls comparePrece() to compare the priority of different operators, then substitute independent variable with specific value to do the calculation.  
 
-**Examples:**
+**Examples:**  
 ![GitHub Logo](/pictures/04.png) 
 ![GitHub Logo](/pictures/05.png)
 
