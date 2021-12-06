@@ -40,7 +40,7 @@ The structure of Calculator is listed below.
 class Calculator
 {
 public:
-    Calculator(const string &expr,const string &deri); // initializing Calculator with a string.
+    Calculator(const string &expr,const string &deri); // initializing Calculator with strings.
     Calculator(const Calculator &value); // copy constructor. 
     
     void print();   // print expr
