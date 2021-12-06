@@ -1,0 +1,23 @@
+/***** Input expressions *****/
+
+The input mathematical expression is:  f(X)=exp(-X+1)+pow(X,2)
+
+The input mathematical expression's derivative: f'(X)=exp(X)
+
+/***** Arithmatic operation *****/ 
+
+#The operation you wanna do: Integration 0  1   0.000001
+
+#The operation you wanna do: Get_zero  -1  1  0.1  0.000001
+
+#The operation you wanna do: Limit1  -1  1  0.1  0.000001
+
+#The operation you wanna do: Integration_0_inf
+
+#The operation you wanna do: Fourier_coefficients  50
+
+#The operation you wanna do: FFT 6 1 0.5
+
+#The operation you wanna do: random 3  1.0  -1.5   50
+
+The operation you wanna do: value 1  4  1
