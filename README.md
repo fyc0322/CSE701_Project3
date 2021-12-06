@@ -65,7 +65,7 @@ private:
     string deri;  // store the derivative expression of orig.
     string token; // the word read at each time. 
     TokenType tkType;  // word type. 
-    string::size_type pos, length;   // position for read and its length. 
+    string::size_type pos, length;   // position for reading data and its length. 
     
     static string ptrList[];   // list of supported operators.
     static int32_t ptrArgCnt[];         // the number of arguments required for the operator.
