@@ -176,10 +176,10 @@ random is used to generate random values with designated average u and the varia
 
 **Algorithms:**  
 For generating random values between [0,1], m =2^16 and pi is the ith random value:  
-![GitHub Logo](/pictures/022.png)  
-For generating a bunch of random numbers that has average u and variance σ=g^2 under normal distribution, let n=12, then we get the lower formula. rndi are random numbers in [0,1]: 
-![GitHub Logo](/pictures/023.png)
-![GitHub Logo](/pictures/024.png)
+<img src="/pictures/022.png" width="400" height="60">  
+For generating a bunch of random numbers that has average u and variance σ=g^2 under normal distribution, let n=12, then we get the lower formula. rndi are random numbers in [0,1]:   
+<img src="/pictures/023.png" width="300" height="100">   
+<img src="/pictures/024.png" width="300" height="60">  
   
 **Examples:**    
 ![GitHub Logo](/pictures/020.png)
