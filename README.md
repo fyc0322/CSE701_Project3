@@ -6,7 +6,7 @@ Yucheng Feng
 
 ## For users:
 
-If you just want to use this program as a calculator to do mathematical calculation, read "Input" section and "Cautions" section. Then you will know how to use this one.
+If you just want to use this program as a calculator to do mathematical calculation, read "Input" section and "Cautions" section. Then you will know how to use this one. For detailed information, read other parts of this doc and check comments in the code.
 
 ## Introduction:
 “Mathematic Calculator” is fulfilled with C++ language and designed for mathematical operation in production-level. It can read formula from “input.txt” and then do sin, cos, tan, acos, asin, atan, cosh, sinh, tanh, acosh, asinh, atanh, log, log2, log10, exp, exp2, sqrt, pow, cbrt, hypot, fmax, fmin, abs, which are quite popular functions in C++ library “cmath”. It can also calculate integration, find limit-value, get zero-value, get Fourier coefficients, do FFT and create random points.
