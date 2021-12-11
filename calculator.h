@@ -1,3 +1,12 @@
+/**
+ * @file calculator.h
+ * @author Yucheng Feng (fengy126@mcmaster.ca)
+ * @brief Mathematic Calculator
+ * @version 0.1
+ * @date 2021-12-06
+ * 
+ * @copyright Copyright (c) 2021
+ */
 #include <string>
 #include <stack>
 #include <cmath>
@@ -6,7 +15,9 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
+
 const string::size_type ptr_num=9;  // number of operators.
 const string::size_type fun_num=24;  // number of functions.
 string Opr_type[] = {"Limit1", "Integration", "Fourier_coefficients", "Get_zero", "Integration_0_inf", "FFT", "random","value"}; //calculations can be done.
@@ -20,7 +31,9 @@ typedef enum
     TKT_UNKNOW     // Unknown symbol 
 } TokenType;
 
-
+/**
+ * @brief strings to store formulas; functions to do mathematical calculations. 
+ */
 class Calculator
 {
 public:
@@ -124,6 +137,16 @@ int32_t Calculator::preceMap[][ptr_num] =
 
 /******************************************************************************/
 
+/**
+ * @brief initializing Calculator with strings.
+ * 
+ * @param expr store the mathematical expression for calculation.
+ * @param orig store original mathematical expression.iption
+ * @param deri store the derivative expression of orig.
+ * @param token  the word read at each time.
+ * @param pos position for reading data
+ * @param length the length of formula
+ */
 Calculator::Calculator(const string &expr,const string &deri)
 {
     this->expr = expr + "#";
@@ -144,18 +167,30 @@ Calculator::Calculator(const Calculator &value)
     this->length = value.length;
 }
 
+/**
+ * @brief print out orig and deri.
+ */
 void Calculator::print()
 {
     cout << orig << endl;
     cout << deri << endl;
 }
 
+/**
+ * @brief update the length of expr.
+ */
 void Calculator::update()
 {
     length = expr.length();
 }
 
-//detect whether str is a number of a string of letters.
+/**
+ * @brief detect whether fstr is a number or a letter.
+ * 
+ * @param fstr input string.
+ * @return true fstr is a number.
+ * @return false fstr is not a number.
+ */
 bool Calculator::num_detect(string fstr)
 {
     stringstream str_(fstr);
@@ -168,6 +203,12 @@ bool Calculator::num_detect(string fstr)
     return true;
 }
 
+/**
+ * @brief get operator (ptr) sequence number
+ * 
+ * @param ptr the operator
+ * @return int32_t sequence number of the operator (ptr)
+ */
 int32_t Calculator::getPtrIndex(const string &ptr)
 {
     for (string::size_type i = 0; i < ptr_num; ++ i)
@@ -177,6 +218,12 @@ int32_t Calculator::getPtrIndex(const string &ptr)
     return -1;
 }
 
+/**
+ * @brief get function (fun) sequence number
+ * 
+ * @param fun the function
+ * @return int32_t sequence number of the operator (ptr)
+ */
 int32_t Calculator::getFunIndex(const string &fun)
 {
     for (string::size_type i = 0; i < fun_num; ++ i) 
@@ -186,6 +233,13 @@ int32_t Calculator::getFunIndex(const string &fun)
     return -1;
 }
 
+/**
+ * @brief compare the priority of the two operators (ptr1 and ptr2)
+ * 
+ * @param ptr1 operator 1
+ * @param ptr2 operator 2
+ * @return int32_t ptr1's priority to ptr2
+ */
 int32_t Calculator::comparePrece(const string &ptr1, const string &ptr2)
 {
     int32_t m = getPtrIndex(ptr1);
@@ -196,6 +250,13 @@ int32_t Calculator::comparePrece(const string &ptr1, const string &ptr2)
     return preceMap[m][n];
 }
 
+/**
+ * @brief single-step calculation of an operator
+ * 
+ * @param ptr an operator
+ * @param arg arguments for the operator
+ * @return double result of such an operator
+ */
 double Calculator::calculate(const string &ptr, double arg[])
 {
     switch (getPtrIndex(ptr)) 
@@ -218,6 +279,13 @@ double Calculator::calculate(const string &ptr, double arg[])
     return 0;
 }
 
+/**
+ * @brief single-step calculation of a function and set value limit.
+ * 
+ * @param fun the function
+ * @param arg arguments for the function
+ * @return double result of such a function
+ */
 double Calculator::callFun(const string &fun, double arg[])
 {
     switch(getFunIndex(fun)) 
@@ -368,6 +436,9 @@ double Calculator::callFun(const string &fun, double arg[])
     return 0;
 }
 
+/**
+ * @brief read next word from input.txt
+ */
 void Calculator::readToken()
 {
 // check whether the reading is completed.
@@ -376,10 +447,9 @@ void Calculator::readToken()
         tkType = TKT_ENDSIGN;
         return ;
     }
-// record the current read position and corresponding characters
     string::size_type pos_t = pos;
     char ch = expr[pos_t++];
-// judge whether ch is an operator or negative number
+// judge the type of ch
     if (-1 != getPtrIndex(std::string(1, ch))) 
     {
         if (ch != '-') 
@@ -412,7 +482,7 @@ void Calculator::readToken()
             }
         }
     }
-// judge whether ch is a number
+
     else if (isdigit(ch)) 
     {
         while (pos_t < length && isdigit(ch = expr[pos_t])) 
@@ -427,7 +497,7 @@ void Calculator::readToken()
         }
         tkType = TKT_NUMBER;
     } 
-// judge whether ch is a function
+
     else if (isalpha(ch)) 
     {
         while (pos_t < length && (isalnum(ch) || ch == '_')) 
@@ -445,10 +515,18 @@ void Calculator::readToken()
     } 
     else tkType = TKT_UNKNOW;
     token = expr.substr(pos, pos_t - pos);
- //   cout << token <<endl;
     pos = pos_t;
 }
 
+/**
+ * @brief check whether the number of arguments in opnd matches n. if match, get n parameters from operand stack (opnd) and store them in arg.
+ * 
+ * @param opnd the operand stack
+ * @param arg store required number of operands 
+ * @param n required number of operands
+ * @return true the number of arguments in opnd matches n
+ * @return false the number of arguments in opnd does not match n
+ */
 bool Calculator::getArg(stack<double> &opnd, double arg[], int32_t n)
 {
     if (opnd.size() < static_cast<unsigned long>(n)) 
@@ -464,13 +542,22 @@ bool Calculator::getArg(stack<double> &opnd, double arg[], int32_t n)
     return true;
 }
 
+/**
+ * @brief solve expr and return its value in res.
+ * @param res return value of function value.
+ * @param optr stack for operators
+ * @param opnd stack for operands
+ * @param comRes store priority of two operators.
+ * @param idx store priority of two operators.
+ * @param argCnt store the required number of operands to operate a function or an operator.
+ */
 void Calculator::getVal(double &res)
 {
-    stack<string> optr;  // stack for operators
-    stack<double> opnd;       // stack for operands 
-    int32_t comRes;                    // store priority of two operators.
-    int32_t idx;                       // store sequence number of a function or an operator.
-    int32_t argCnt;                    // store the required number to operate a function or an operator.
+    stack<string> optr;
+    stack<double> opnd;
+    int32_t comRes; 
+    int32_t idx; 
+    int32_t argCnt;
     optr.push("#");
     pos = 0;
     readToken();
@@ -546,6 +633,13 @@ void Calculator::getVal(double &res)
     res = opnd.top();
 }
 
+/**
+ * @brief calculate the function value at given point x
+ * 
+ * @param cal_expr formula f(X) waiting for solving
+ * @param x given point
+ * @return double the value of f(x)
+ */
 double Calculator::cal_num(const string &cal_expr,double x)
 {
     double res;
@@ -570,6 +664,15 @@ double Calculator::cal_num(const string &cal_expr,double x)
     return res;
 }
 
+/**
+ * @brief do integration of expr_i from a to b with precision eps.
+ * 
+ * @param expr_i formula waiting for integration
+ * @param a lower boundary for integration
+ * @param b upper boundary for integration
+ * @param eps precision
+ * @return double the result of integration
+ */
 double Calculator::integra(string& expr_i, double a, double b, double eps){
 // n: divide the integral interval into 2n equal parts 
 // fa and fb are the lower and upper boundary.
@@ -610,6 +713,12 @@ double Calculator::integra(string& expr_i, double a, double b, double eps){
     return(t);
   }
 
+/**
+ * @brief do integration from 0 to infinity
+ * 
+ * @param expr_0i formula waiting for integration
+ * @return double the result of integration
+ */
 double Calculator::integra_0i(string &expr_0i)
 {
 // x are the roots of Laguerre polynomial Ln(x)
@@ -629,10 +738,18 @@ double Calculator::integra_0i(string &expr_0i)
 
 }
 
+/**
+ * @brief get the zero-value of expr0
+ * 
+ * @param expr0 formula waiting for solving zero-solution
+ * @param a lower boundary for zero-solution
+ * @param b upper boundary for zero-solution
+ * @param h step length
+ * @param eps precision. f(x)<eps indicates x is zero-point。
+ * @return vector<double> return all zero-points
+ */
 vector<double> Calculator::zero(string &expr0,double a, double b, double h, double eps)
 {
-// a and b are interval endpoints.
-// h is step length and eps is the precision.
 // n is the number of zero-points.
 // x is a group of zero points.
 // y, y0 and y1 are the function values at end points.
@@ -643,6 +760,7 @@ vector<double> Calculator::zero(string &expr0,double a, double b, double h, doub
     n=0; 
     z=a; 
     y=cal_num(expr0,z);
+// Bisection method to get zero-points
     while ((z<=b+h/2.0))
     { 
         if (fabs(y)<eps)
@@ -728,6 +846,14 @@ vector<double> Calculator::zero(string &expr0,double a, double b, double h, doub
     return(x);
 }
 
+/**
+ * @brief to find all the limit values of formula orig
+ * 
+ * @param a lower boundary for limit-solution
+ * @param b upper boundary for limit-solution
+ * @param h step length
+ * @param eps precision
+ */
 void Calculator::limit1(double a, double b, double h, double eps){
     vector<double> dr_zero;
     vector<double>::size_type n;
@@ -754,7 +880,11 @@ void Calculator::limit1(double a, double b, double h, double eps){
     }
 }
 
-
+/**
+ * @brief get Fourier series coefficients and store them in a file
+ * 
+ * @param n the first n coefficients of Fourier series
+ */
 void Calculator::fourier(vector<double>::size_type n)
 {
 // a is for Fourier's coefficient ak.
@@ -774,6 +904,7 @@ void Calculator::fourier(vector<double>::size_type n)
     {
         f.push_back(cal_num(orig,(i+0.5)*t));
     }
+// calculation process
     t=2.0/(2.0*n+1.0); 
     c1=1.0; 
     s1=0.0;
@@ -814,15 +945,19 @@ void Calculator::fourier(vector<double>::size_type n)
     return;
 }
 
+/**
+ * @brief do Fast Fourier Transform
+ * 
+ * @param k n=pow(2,k) is the number of sample points
+ * @param il il = 0 means not to calculate magnitude and angle; = 1 means to calculate them.
+ * @param h sample starting point.
+ */
 void Calculator::fft(vector<double>::size_type k,vector<double>::size_type il,double h)
 {
 // pr is used to store the real part of input.
 // pi is used to store the imaginary part of input.
 // fr is used to return the real part of result.
 // fi is used to return the imaginary part of result.
-// n is the sample points.
-// h is the sample starting points.
-// il = 0 means not to calculate magnitude and angle; = 1 means to calculate them.
 // it,m,is,i,j,nv,l0 are all for loop-iteration.
 // p,q,s,tr,ti,pdr,pdi are all for temporary purpose.
     vector<double>::size_type n = static_cast<vector<double>::size_type>(pow(2,k));
@@ -838,7 +973,7 @@ void Calculator::fft(vector<double>::size_type k,vector<double>::size_type il,do
         }
     sq=pr;
 
-// get corresponding Even power and odd power.
+// get corresponding Even and odd parts.
     for (it=0; it<n; it++)
         { 
             m=it; 
@@ -939,12 +1074,16 @@ void Calculator::fft(vector<double>::size_type k,vector<double>::size_type il,do
     return;
 }
 
+/**
+ * @brief create random numbers
+ * 
+ * @param r the random seed
+ * @param u the average value
+ * @param g the variance of normal distribution. when g<=0, we ignore normal distribution restriction
+ * @param n the number of data
+ */
 void Calculator::random(double r,double u, double g, vector<double>::size_type n)
 {
-// r is the random seed.
-// u is the average value.
-// g is the variance of normal distribution. when g<=0, we ignore normal distribution restriction.
-// n is the length of data
 // s, w, v are function coefficients listed in doc.
 // t and m for temporary usage.
     vector<double>::size_type i,k;
@@ -1016,6 +1155,13 @@ void Calculator::random(double r,double u, double g, vector<double>::size_type n
     return;
 }
 
+/**
+ * @brief get the value of f(x) 
+ * 
+ * @param a lower boundary for solving value
+ * @param b upper boundary for solving value
+ * @param h step length
+ */
 void Calculator::value(double a, double b,double h)
 {
     double i=a;
@@ -1032,10 +1178,14 @@ void Calculator::value(double a, double b,double h)
     }
 }
 
+/**
+ * @brief read input.txt and do corresponding calculation. Simplify the main file.
+ * 
+ */
 void cal_expression()
 {
     string t;         // store temporary data
-    string str;       // store a whole row from input.txt
+    string str1;       // store a whole row from input.txt
     string Math_expr; // store mathematical expression
     string Deri_expr = "none"; // store derivative expression.
     string str_tem;   // store the operation of Math_expr 
@@ -1053,16 +1203,16 @@ void cal_expression()
     }
 
 // first loop to read the expression.
-    while(getline(input,str))
+    while(getline(input,str1))
     {
 
 // remove spaces in str
-        str.erase(remove(str.begin(), str.end(), ' '), str.end());
+        str1.erase(remove(str1.begin(), str1.end(), ' '), str1.end());
 
 // extract original expression from file into Math_expre
-        if(str.find("f(X)")<str.length() && str.find('#')== string::npos)
+        if(str1.find("f(X)")<str1.length() && str1.find('#')== string::npos)
         {
-            Math_expr = str.substr(str.find("f(X)")+5);
+            Math_expr = str1.substr(str1.find("f(X)")+5);
             cout << "f(X)=" << Math_expr <<endl;
 
 // if there is no variable in expression, then just do arithmetic calculation
@@ -1075,23 +1225,23 @@ void cal_expression()
             }
         }
 // extract derivative expression of expr
-        if (str.find("f'(X)")<str.length() && str.find('#')== string::npos)
+        if (str1.find("f'(X)")<str1.length() && str1.find('#')== string::npos)
         {
-            Deri_expr = str.substr(str.find("f'(X)")+6);
+            Deri_expr = str1.substr(str1.find("f'(X)")+6);
             cout << "f'(X)=" << Deri_expr <<"\n"<<endl;
         }
-        if(str.find("Arithmatic")<str.length()) break;
+        if(str1.find("Arithmatic")<str1.length()) break;
     }
 
     Calculator cal(Math_expr,Deri_expr);
 
 // second loop to do specific mathematical operation.
-    while(getline(input,str))
+    while(getline(input,str1))
     {
         type=99;
-        if(str.find("do:")<str.length() && str.find('#')== string::npos) 
+        if(str1.find("do:")<str1.length() && str1.find('#')== string::npos) 
         {
-            str_tem = str.substr(str.find("do:")+3);
+            str_tem = str1.substr(str1.find("do:")+3);
             stringstream tem(str_tem);
             tem >> t;
             for (int32_t i = 0; i < Opr_num; i++) 
