@@ -4,9 +4,9 @@
 
 Yucheng Feng
 
-## Mission:
+## For users:
 
-Read mathematical expressions from text file. Based on the formula loaded, the program should achieve goals of performing popular arithmetic calculations, such as + - * / common functions in “cmath”, doing integration, calculating Fourier coefficients, getting zero values of expressions, finding limit values of the expression in the given range, doing FFT and creating random numbers.
+If you just want to use this program as a calculator to do mathematical calculation, read "Input" section and "Cautions" section. Then you will know how to use this one.
 
 ## Introduction:
 “Mathematic Calculator” is fulfilled with C++ language and designed for mathematical operation in production-level. It can read formula from “input.txt” and then do sin, cos, tan, acos, asin, atan, cosh, sinh, tanh, acosh, asinh, atanh, log, log2, log10, exp, exp2, sqrt, pow, cbrt, hypot, fmax, fmin, abs, which are quite popular functions in C++ library “cmath”. It can also calculate integration, find limit-value, get zero-value, get Fourier coefficients, do FFT and create random points.
@@ -197,15 +197,15 @@ This function is not a class function but a one encapsulated in calculator.h. It
 
 ## Cautions:
 
-1. This code does not distinguish minus ‘-’ and negative ‘-’. Although the code can successfully detect negative numbers, when there is input like “–exp(X)”, it will have an error.
+1. This code does not distinguish minus ‘-’ and negative ‘-’. Although the code can successfully detect negative numbers, when there is an input like “–exp(X)”, it will have an error. I recommend to write "0-exp(X)".
 
 2. The code take ‘X’ instead of ‘x’ as independent variable.
 
 3. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an error. The range of limit could be modified by users themselves.
   
-4. For input.txt, never change the sentences before ‘:’. You are only allowed to modify expressions and select specific operation you need.
+4. For input.txt, never change the sentences before ‘:’. You are only allowed to modify expressions and select specific operations you need.
   
-5. All functions should be the same as that in cmath.
+5. All functions should be the same as these listed in cmath.
   
 6. For integra_0i(), it only works for expressions that have the form as showed in its algorithms.
   
