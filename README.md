@@ -30,9 +30,9 @@ All input information should be listed in “input.txt”. This file has two par
 
 **FFT k il h**: where FFT means Fast Fourier Transform. n=pow(2,k) is the number of sampling points. il indicates whether to calculate amplitudes and angles, and h is the location of starting sample point (0.1*(i+h)). 
 
-**random r u g n**: where random means we are going to create random values. r is the random seed. u is the average value. g2 is the variance of normal distribution, when g<=0, we ignore normal distribution restriction and just give random numbers in [0,1]. n is the number of data. 
+**Random u g n**: where random means we are going to create random values. u is the average value. g2 is the variance of normal distribution, when g<=0, we ignore normal distribution restriction and just give random numbers in [0,1]. n is the number of data. 
 
-**value a b h**: value means we just calculate the value of formula from a to b with step h.
+**Value a b h**: value means we just calculate the value of formula from a to b with step h.
 
 ## Class Calculator:
 The structure of Calculator is listed below.
