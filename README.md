@@ -55,7 +55,7 @@ public:
     void limit1(double a, double b, double h, double eps); // get local limit value with f(x) and f'(x).
     void fourier(vector<double>::size_type n); // get fourier coefficients
     void fft(vector<double>::size_type k,vector<double>::size_type il,double h); // fast fourier transform.
-    void random(double r,double u, double g, vector<double>::size_type n);
+    void random(double u, double g, vector<double>::size_type n);
     void value(double a, double b,double h);
 
 
@@ -171,8 +171,8 @@ Please see Wiki Link:[FFT](https://en.wikipedia.org/wiki/Fast_Fourier_transform)
 ![GitHub Logo](/pictures/017.png)
 ![GitHub Logo](/pictures/018.png)
 
-### void random (double r,double u, double g, vector<double>::size_type n)
-random is used to generate random values with designated average u and the variance g*g of normal distribution. r is the random seed. g^2 is the variance of normal distribution, when g<=0, we ignore normal distribution restriction and just create random numbers in the range [0,1]. n is the number of random data. The result will be stored in a text file named “random.txt”.
+### void random (double u, double g, vector<double>::size_type n)
+random is used to generate random values with designated average u and the variance g*g of normal distribution. g^2 is the variance of normal distribution, when g<=0, we ignore normal distribution restriction and just create random numbers in the range [0,1]. n is the number of random data. The result will be stored in a text file named “random.txt”.
 
 **Algorithms:**  
 For generating random values between [0,1], m =2^16 and pi is the ith random value:  
