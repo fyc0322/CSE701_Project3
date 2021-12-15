@@ -22,7 +22,7 @@ All input information should be listed in “input.txt”. This file has two par
 
 **Get_zero a b h eps**: where Get_zero indicates that we are going to find all the zero values of input formula in the range of a and b with step h and precision eps. Get_zero is based on Bisection method so it needs a step.
 
-**Limit1 a b  h  eps**: where Limit1 indicates that we are going to find the limit value of formula in given range and other input parameters’ meaning are just like these in Get_zero.
+**Limit a b  h  eps**: where Limit1 indicates that we are going to find the limit value of formula in given range and other input parameters’ meaning are just like these in Get_zero.
 
 **Integration_0_inf**: Do integration from 0 to infinity.
 
@@ -52,7 +52,7 @@ public:
     double integra(string& expr_i, double a, double b, double eps); // do integration.
     double integra_0i(string &expr_0i); // do integration from 0 to infinity.
     vector<double> zero(string &expr0,double a, double b, double h, double eps); // get zero value.
-    void limit1(double a, double b, double h, double eps); // get local limit value with f(x) and f'(x).
+    void limit(double a, double b, double h, double eps); // get local limit value with f(x) and f'(x).
     void fourier(vector<double>::size_type n); // get fourier coefficients
     void fft(vector<double>::size_type k,vector<double>::size_type il,double h); // fast fourier transform.
     void random(double u, double g, vector<double>::size_type n);
@@ -140,7 +140,7 @@ This function is based on Bisection method, which is clearly listed on Wiki Link
 ![GitHub Logo](/pictures/011.png) 
 ![GitHub Logo](/pictures/010.png)
 
-### void limit1(double a, double b, double h, double eps):
+### void limit(double a, double b, double h, double eps):
 This function directly read expression “orig and deri” from class and then find all the limit values of formula “orig” from a to b with step h. if f’(x)<eps, then this x would be detected as a zero point of f’(x), which is deri (the derivative of orig) in class. After finding all the zero values, all points will be printed out to the screen.
   
 **Algorithms:**
