@@ -37,62 +37,109 @@ All input information should be listed in “input.txt”. This file has two par
 ## Class Calculator:
 The structure of Calculator is listed below.
 ```cpp
+/**
+ * @brief class with strings to store formulas and functions to do mathematical calculations. 
+ */
 class Calculator
 {
 public:
-    Calculator(const string &expr,const string &deri); // initializing Calculator with strings.
-    Calculator(const Calculator &value); // copy constructor. 
-    
-    void print();   // print expr
-    void update(); // update the length of expr.
-    bool num_detect(string str); // detect the type of input.
-    void getVal(double &res); // res is the value of expr at specific point.
-    double cal_num(const string &, double); // get an arithmetic value of expr.
-    
-    double integra(string& expr_i, double a, double b, double eps); // do integration.
-    double integra_0i(string &expr_0i); // do integration from 0 to infinity.
-    vector<double> zero(string &expr0,double a, double b, double h, double eps); // get zero value.
-    void limit(double a, double b, double h, double eps); // get local limit value with f(x) and f'(x).
-    void fourier(vector<double>::size_type n); // get fourier coefficients
-    void fft(vector<double>::size_type k,vector<double>::size_type il,double h); // fast fourier transform.
-    void random(double u, double g, vector<double>::size_type n);
-    void value(double a, double b,double h);
-
+    Calculator(const string &expr, const string &deri);                            // Initializing Calculator with a string.
+    Calculator(const Calculator &value);                                           // Copy constructor to initialize an object of Calculator with another existing Calculator object "value".
+    void print();                                                                  // Print mathematical expressions out.
+    void update();                                                                 // Update the length of expr.
+    bool num_detect(string str);                                                   // Detect the type of input.
+    void getVal(double &res);                                                      // Calculate the value of res.
+    double cal_num(const string &cal_expr, double x);                              // Get an function value of cal_expr at point x.
+    double integra(string &expr_i, double a, double b, double eps);                // Integration operation.
+    double integra_0i(string &expr_0i);                                            // Do integration from 0 to infinity.
+    vector<double> zero(string &expr0, double a, double b, double h, double eps);  // Get zero value.
+    void limit(double a, double b, double h, double eps);                          // Get local limit value with f(x) and f'(x).
+    void fourier(vector<double>::size_type n);                                     // Get fourier coefficients.
+    void fft(vector<double>::size_type k, vector<double>::size_type il, double h); // Fast Fourier Transform.
+    void random(double u, double g, vector<double>::size_type n);                  // Create n random values with average u and variance g.
+    void value(double a, double b, double h);                                      // Calculate function values.
 
 private:
-    string expr;   // store the mathematical expression for calculation.
-    string orig;   // store original mathematical expression.
-    string deri;  // store the derivative expression of orig.
-    string token; // the word read at each time. 
-    TokenType tkType;  // word type. 
-    string::size_type pos, length;   // position for reading data and its length. 
-    
-    static string ptrList[];   // list of supported operators.
-    static int32_t ptrArgCnt[];         // the number of arguments required for the operator.
-    static string funList[];   // list of supported functions. 
-    static int32_t funArgCnt[];         // the number of arguments required for the function. 
-    static int32_t preceMap[][ptr_num]; // operation priority table.
+/**
+ * @param expr Store the mathematical expression for calculation.
+ * @param orig Store original mathematical expression.
+ * @param deri Store the derivative expression of orig.
+ * @param token The word read at each time.
+ * @param tkType Word type. 
+ * @param pos Position for read. 
+ * @param length The length of formula.
+ * @param ptrList List of supported operators.
+ * @param ptrArgCnt The number of arguments required for the operator.
+ * @param preceMap Operation priority table.
+ * 
+ */
+    string expr;
+    string orig;
+    string deri;
+    string token;
+    TokenType tkType;
+    string::size_type pos, length;
+    static string ptrList[];
+    static int32_t ptrArgCnt[];
+    static int32_t preceMap[][ptr_num];
 
-    // read next word
+    /**
+     * @brief Read next word.
+     */
     void readToken();
 
-    // compare the priority of the two operators (ptr1 and ptr2), and then return an int32_t value.
+    /**
+     * @brief Compare the priority of the two operators (ptr1 and ptr2), and then return an int32_t value.
+     * 
+     * @param ptr1 Operator 1.
+     * @param ptr2 Operator 2.
+     * @return int32_t Return the result of priority.
+     */
     int32_t comparePrece(const string &ptr1, const string &ptr2);
 
-    // single-step calculation of an operator and return a double value.
+    /**
+     * @brief Single-step calculation of an operator and return a double value.
+     * 
+     * @param ptr The operator.
+     * @param arg Arguments required by the operator.
+     * @return double Value after calculation. 
+     */
     double calculate(const string &ptr, double arg[]);
 
-    // single-step calculation of a function and return a double value.
+    /**
+     * @brief Single-step calculation of a function and return a double value.
+     * 
+     * @param fun The function.
+     * @param arg Arguments required by the function.
+     * @return double Value after calculation. 
+     */
     double callFun(const string &fun, double arg[]);
 
-    // get operator (ptr) sequence number, and then return an int32_t value.
+    /**
+     * @brief Get operator (ptr) sequence number, and then return an int32_t value.
+     * 
+     * @param ptr The operator.
+     * @return int32_t The operator's sequence number.
+     */
     int32_t getPtrIndex(const string &ptr);
 
-    // get function (fun) sequence number, and then return an int32_t value.
-    int32_t getFunIndex(const string &fun);
+    /**
+     * @brief Detect whether the function is supported or not.
+     * 
+     * @param fun The function.
+     * @return An object of enum.
+     */
+    funList getFunIndex(const string &fun);
 
-    // check whether the number of arguments in opnd matches n.
-    // if match, get n parameters from operand stack (opnd) and store them in arg.
+    /**
+     * @brief Check whether the number of arguments in opnd matches n. If match, get n parameters from operand stack (opnd) and store them in arg.
+     * 
+     * @param opnd The operator/function.
+     * @param arg The result.
+     * @param n Number of arguments needed to do a calculation.
+     * @return true The number of arguments in opnd matches n.
+     * @return false The number of arguments in opnd fails to match n.
+     */
     bool getArg(stack<double> &opnd, double arg[], int32_t n);
 };
 ```
