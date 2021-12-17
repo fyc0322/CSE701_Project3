@@ -99,7 +99,7 @@ private:
 
 ## Main functions:
 ### double cal_num (const string &cal_expr, double x):
-This function is used to get the numerical value of formula “cal_expr” at position x. This function calls getVal() to achieve its goal while getVal calls other functions in the private part of Caluculator to compute the value. The value would be returned as a double one.
+This function is used to get the numerical value of formula “cal_expr” at position x. This function calls getVal() to achieve its goal while getVal calls other functions in the private part of Calculator to compute the value. The value would be returned as a double one.
 
 **Algorithms:**  
 The underlying mechanism of reading expressions from text is based on an operand stack and an operator stack. It calls readToken() to read and classify each word from input.txt, calls comparePrece() to compare the priority of different operators, then substitute independent variable with specific value to do the calculation.  
@@ -109,7 +109,7 @@ The underlying mechanism of reading expressions from text is based on an operand
 ![GitHub Logo](/pictures/05.png)
 
 ### double integra (string& expr_i, double a, double b, double eps):
-This function is used to calculate the integration of formula expr_i from a to b with precison eps. The result of integration will be returned as a double one.
+This function is used to calculate the integration of formula expr_i from a to b with precision eps. The result of integration will be returned as a double one.
 
 **Algorithms:**  
 The integration is based on the trapezoidal rule and its principle is clearly listed on Wiki Link:[trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule).
@@ -210,7 +210,6 @@ This function is not a class function but a one encapsulated in calculator.h. It
 6. For integra_0i(), it only works for expressions that have the form as showed in its algorithms.
   
 7. When using zero(), you must take step h seriously since it will affect the results.
-
 
 
 
