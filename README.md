@@ -1,4 +1,4 @@
-# CSE701_Project3 - Mathematic Calculator
+# CSE701_Project3 - Mathematical Calculator
 
 ## Author name: 
 
@@ -9,14 +9,20 @@ Yucheng Feng
 If you just want to use this program as a calculator to do mathematical calculation, read "Input" section and "Cautions" section. Then you will know how to use this one. For detailed information, read other parts of this doc and check comments in the code.
 
 ## Introduction:
-“Mathematic Calculator” is fulfilled with C++ language and designed for mathematical operation in production-level. It can read formula from “input.txt” and then do sin, cos, tan, acos, asin, atan, cosh, sinh, tanh, acosh, asinh, atanh, log, log2, log10, exp, exp2, sqrt, pow, cbrt, hypot, fmax, fmin, abs, which are quite popular functions in C++ library “cmath”. It can also calculate integration, find limit-value, get zero-value, get Fourier coefficients, do FFT and create random points.
+“Mathematical Calculator” is fulfilled with C++ language and designed for mathematical operation in production-level. It can read formula from “input.txt” and then do sin, cos, tan, acos, asin, atan, cosh, sinh, tanh, acosh, asinh, atanh, log, log2, log10, exp, exp2, sqrt, pow, cbrt, hypot, fmax, fmin, abs, which are quite popular functions in C++ library “cmath”. It can also calculate integration, find limit-value, get zero-value, get Fourier coefficients, do FFT and create random points.
 
-Codes for “Mathematic Calculator” are written in two files – calculator.h and Math_co.cpp. Most jobs are done in calculator.h, in which corresponding functions are encapsulated in Class “Calculator”. Math_co.cpp is just used to call a function to read formulas, print out or save calculation results.
+Codes for “Mathematical Calculator” are written in two files – calculator.h and Math_co.cpp. Most jobs are done in calculator.h, in which corresponding functions are encapsulated in Class “Calculator”. Math_co.cpp is just used to call a function to read formulas, print out or save calculation results.
 
-“Mathematic Calculator” works for arbitrary of formulas, but it has its own limitations which will be described in “Cautions” part of this document. Users of this code just need to give their formula in input.txt file, then run Math_co.cpp to get the results they are looking forward to.
+“Mathematical Calculator” works for arbitrary formulas, but it has its own limitations which will be described in “Cautions” part of this document. Users of this code just need to give their formula in input.txt file, then run Math_co.cpp to get the results they are looking forward to.
 
 ## Input:
-All input information should be listed in “input.txt”. This file has two parts. The first part is designed to read the formula and the second is used to do specific calculation. To read formulas from input file, users should give their own mathematical expressions after “The input mathematical expression is:” and “The input mathematical expression's derivative:”. These sentences cannot be changed otherwise it will lead to read file errors. The format of basic functions should be in the same format as those in the C++ cmath library. The second is to select specific operations. Nowadays, this code offers eight possible operations; users should choose their own operations based on their needs, and typed them after “The operation you wanna do:”. This sentence cannot be changed again.The format of each operation is listed below.
+'#' means this line will be ignored.
+
+ "/***** Input expressions *****/" means you should give your formulas after this.
+ 
+ "/***** Operations *****/" means followings are the operations you want to do.
+
+All input information should be listed in “input.txt”. This file has two parts. The first part is designed to read the formula and the second is used to do specific calculation. To read formulas from input file, users should give their own mathematical expressions. The format of basic functions should be in the same format as those in the C++ cmath library. The second is to select specific operations. Nowadays, this code offers eight possible operations; users should choose their own operations based on their needs. The format of each operation is listed below:
 
 **Integration a b eps**: where Integration indicates that we are going to do integration from a to b with precision eps.
 
