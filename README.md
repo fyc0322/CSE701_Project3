@@ -152,8 +152,14 @@ This function is used to get the numerical value of formula “cal_expr” at po
 The underlying mechanism of reading expressions from text is based on an operand stack and an operator stack. It calls readToken() to read and classify each word from input.txt, calls comparePrece() to compare the priority of different operators, then substitute independent variable with specific value to do the calculation.  
 
 **Examples:**  
-![GitHub Logo](/pictures/04.png) 
-![GitHub Logo](/pictures/05.png)
+```
+f(X)=-exp(-1+2)   
+f(X)=-2.71828
+```
+```
+f(X)=-exp(-1+2)+fmax(1,3)+log(10)*sin(3)   
+f(X)=0.606659
+```
 
 ### double integra (string& expr_i, double a, double b, double eps):
 This function is used to calculate the integration of formula expr_i from a to b with precision eps. The result of integration will be returned as a double one.
@@ -162,8 +168,16 @@ This function is used to calculate the integration of formula expr_i from a to b
 The integration is based on the trapezoidal rule and its principle is clearly listed on Wiki Link:[trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule).
 
 **Examples:**  
-![GitHub Logo](/pictures/02.png) 
-![GitHub Logo](/pictures/03.png)
+```
+f(X)=exp(-X)
+***** Integration Operation *****
+integration from 0 to 1 of f(X) is: 0.632121
+```
+```
+f(X)=X*X
+***** Integration Operation *****
+integration from 0 to 1 of f(X) is: 0.333333
+```
 
 ### double integra_0i(string &expr_0i) 
 This function is used to calculate the integration of formula expr_0i from 0 to infinity, and then return its result as a double value.
@@ -174,8 +188,16 @@ This integration is based on Gauss–Laguerre quadrature, which is an extension 
 This method is clearly listed on Wiki Link:[Gauss–Laguerre quadrature](https://en.wikipedia.org/wiki/Gauss%E2%80%93Laguerre_quadrature). We set the order of  Laguerre polynomial Ln(x) to be 5.
 
 **Examples:**  
-![GitHub Logo](/pictures/07.png) 
-![GitHub Logo](/pictures/08.png)
+```
+f(X)=X*exp(-X)
+***** Integrate from 0 to infinity *****
+integration from 0 to  infinity of f(X) is: 1
+```
+```
+f(X)=sin(X)*exp(-X)
+***** Integrate from 0 to infinity *****
+integration from 0 to  infinity of f(X) is: 0.498905
+```
 
 ### vector<double> zero(string &expr0,double a, double b, double h, double eps):
 This function is used to find all the zero values of formula expr0 from a to b with step h. if f(x)<eps, then this x would be detected as a zero point. After finding all the zero values, all points will be stored in a vector as the return value.
