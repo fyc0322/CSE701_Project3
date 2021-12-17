@@ -206,8 +206,16 @@ This function is used to find all the zero values of formula expr0 from a to b w
 This function is based on Bisection method, which is clearly listed on Wiki Link:[Bisection method](https://en.wikipedia.org/wiki/Bisection_method).
                                                                                                          
 **Examples:**  
-![GitHub Logo](/pictures/011.png) 
-![GitHub Logo](/pictures/010.png)
+```
+f(X)=2-exp(X*X)
+***** Get zero Operation *****
+x-points for 0 from -1 to 1 are: -0.832555 0.832555 
+```
+```
+f(X)=2-exp(-X*X)
+***** Get zero Operation *****
+function at interval -1 to 1 has no zero value.
+```
 
 ### void limit(double a, double b, double h, double eps):
 This function directly read expression “orig and deri” from class and then find all the limit values of formula “orig” from a to b with step h. if f’(x)<eps, then this x would be detected as a zero point of f’(x), which is deri (the derivative of orig) in class. After finding all the zero values, all points will be printed out to the screen.
@@ -216,10 +224,29 @@ This function directly read expression “orig and deri” from class and then f
 For f(x), if f’(x)=0, then x is a point in which f(x) will have a limit maximum or minimum value. If there is no f’(x)=0 in the range from a to b, then local maximum and minimum value would be located on boundaries a and b. 
 
 **Examples:**  
-![GitHub Logo](/pictures/012.png) 
-![GitHub Logo](/pictures/013.png)
-![GitHub Logo](/pictures/014.png)
-
+```
+f(X)=2+exp(-X*X)
+f'(X)=-2*X*exp(-X*X)
+***** Limit Operation *****
+x-points for 0 from -1 to 1 are: 0 
+0 is the local maxima point. The maxima is: 3
+````
+```
+f(X)=X*X
+f'(X)=2*X
+***** Limit Operation *****
+x-points for 0 from -1 to 1 are: 0 
+0 is the local minimum point. The minimum is: 0
+````
+```
+f(X)=exp(X)
+f'(X)=exp(X)
+***** Limit Operation *****
+function at interval -1 to 1 has no zero value.
+no limit value between -1 to 1. largest and lowest value are both on the boundaries
+highest value is: 2.71828 lowest value is: 0.367879
+````
+    
 ### void fourier(vector<double>::size_type n) 
 This function is organized to get first n coefficients of Fourier series and then stored all results in a text file named “fourier_coefficients.txt”, where a and b are an and bn illustrated below.  
   
@@ -227,8 +254,42 @@ This function is organized to get first n coefficients of Fourier series and the
 The introduction of Fourier series is clearly listed on Wiki Link:[Fourier series](https://en.wikipedia.org/wiki/Fourier_series).
 
 **Examples:**    
-![GitHub Logo](/pictures/015.png)
-![GitHub Logo](/pictures/016.png)
+```
+f(X)=X*X
+***** Fourier_coefficients Operation *****
+Successfully calculate Fourier_coefficients and store results in fourier_coefficients.txt.
+For some results in fourier_coefficients.txt:
+ i         a              b
+ 0          26.3183       0
+ 1          3.60656       -12.6867
+ 2         0.606573       -6.33721
+ 3        0.0509917       -4.21799
+ 4        -0.143439       -3.15631
+ 5        -0.233435       -2.51767
+ 6        -0.282321       -2.09052
+ 7        -0.311775       -1.78423
+ 8        -0.330917       -1.55347
+ 9        -0.343983       -1.37302
+10        -0.353376       -1.22808
+````
+````
+f(X)=exp(X)
+***** Fourier_coefficients Operation *****
+Successfully calculate Fourier_coefficients and store results in fourier_coefficients.txt.
+For some results in fourier_coefficients.txt:
+ i         a              b
+ 0          170.107       0
+ 1          82.3527       -87.698
+ 2             29.7       -70.0906
+ 3           12.149       -52.4831
+ 4          4.92224       -41.0698
+ 5          1.34866       -33.4685
+ 6         -0.65801       -28.1207
+ 7         -1.89092       -24.1741
+ 8         -2.70059       -21.1468
+ 9         -3.25953       -18.7521
+10         -3.66281       -16.8103
+````
 
 ### void fft(vector<double>::size_type k,vector<double>::size_type il,double h)
 fft is used to do the Fast Fourier Transform. n=2k is the number of sample points, il = 0 means not to calculate magnitude and angle while = 1 means to calculate them, and h is the sample starting points. The result will be stored in a text file named “FFT_result.txt”.  
@@ -237,8 +298,39 @@ fft is used to do the Fast Fourier Transform. n=2k is the number of sample point
 Please see Wiki Link:[FFT](https://en.wikipedia.org/wiki/Fast_Fourier_transform) to check how to do FFT.
   
 **Examples:**    
-![GitHub Logo](/pictures/017.png)
-![GitHub Logo](/pictures/018.png)
+````
+f(X)=exp(X)
+***** FFT Operation *****
+Successfully calculate FFT and store results in FFT_result.txt.
+For some results in FFT_result.txt:
+ f(X)       "Real part after FFT"   Imag part after FFT 
+   1.05127        6005.95                     0
+   1.16183        2905.87               3152.55
+   1.28403        990.395               2544.07
+   1.41907        342.366               1907.45
+   1.56831        74.1327               1489.82
+   1.73325       -58.8019               1209.58
+   1.91554       -133.526               1011.11
+     2.117       -179.463               863.634
+   2.33965       -209.631               749.662
+   2.58571       -230.466               658.741
+````
+````
+f(X)=exp(-X)
+***** FFT Operation *****
+Successfully calculate FFT and store results in FFT_result.txt.
+For some results in FFT_result.txt:
+ f(X)       "Real part after FFT"   Imag part after FFT 
+  0.951229        9.97923                     0
+  0.860708        5.31844              -4.73967
+  0.778801        2.43865              -3.82485
+  0.704688        1.46438              -2.86773
+  0.637628         1.0611              -2.23986
+   0.57695       0.861244              -1.81854
+  0.522046         0.7489              -1.52015
+  0.472367       0.679837              -1.29842
+  0.427415       0.634482              -1.12707
+````
 
 ### void random (double u, double g, vector<double>::size_type n)
 random is used to generate random values with designated average u and the variance g*g of normal distribution. g^2 is the variance of normal distribution, when g<=0, we ignore normal distribution restriction and just create random numbers in the range [0,1]. n is the number of random data. The result will be stored in a text file named “random.txt”.
@@ -251,34 +343,60 @@ For generating a bunch of random numbers that has average u and variance σ=g^2 
 <img src="/pictures/024.png" width="300" height="60">  
   
 **Examples:**    
-![GitHub Logo](/pictures/020.png)
-![GitHub Logo](/pictures/021.png)
+````
+***** random Operation *****
+random points in [0,1] are: 
+0.592117,  0.828156,  0.414597,  0.378052,  0.351578,  0.000457764,  0.151108,  0.435608,  0.514359,  0.189362,  0.970627,  0.908203,  0.752335,  0.754242,
+0.670029,  0.780212,  0.987381,  0.304474,  0.296188,  0.286011,  0.391373,  0.699432,  0.145981,  0.909973,  0.386185,  0.0484924,  0.766281,  0.386475, 
+0.643692,  0.711029,  0.953964,  0.69989,  0.0857697,  0.296417,  0.755905,  0.0845947,  0.884293,  0.664032,  0.468979,  0.0249634,  0.461136,  0.923248, 
+0.64006,  0.255371,  0.488174,  0.433441,  0.0660248,  0.760193,  0.887283,  0.803986,  End
+````
+````
+***** random Operation *****
+Normal distribution random points with average= 1 variance= 1.5:
+0.418411,  2.36848,  1.51192,  1.31746,  2.25386,  3.28987,  0.394241,  -1.46428,  1.18306,  1.30501,  -0.629684,  1.84773,  1.70601,  0.913895,  -0.0598602, 
+0.753494,  -0.677292,  -0.883469,  -0.896286,  -0.246994,  0.0331573,  -1.08708,  1.36104,  3.34627,  0.837357,  0.303055,  -0.787888,  -0.466721,  -1.26469,
+-1.21306,  0.156937,  3.31404,  1.22701,  1.86458,  -0.304489,  1.18855,  3.81245,  0.535965,  0.827835,  0.656815,  0.491653,  0.801102,  2.05391,  3.21883,
+-1.2354,  1.15999,  0.373734,  -3.12541,  0.131302,  1.61263,  End
+````
 
 ### void value(double a, double b,double h)
 This function is used to get the numerical value of orig in class Calculator.
 
 **Examples:**    
-![GitHub Logo](/pictures/01.png)
-![GitHub Logo](/pictures/025.png)
+````
+f(X)=-exp(X)+1
+***** value Operation *****
+f(0)= 0
+f(1)= -1.71828
+f(2)= -6.38906
+f(3)= -19.0855
+````
+````
+f(X)=-exp(X)+cos(X)-fmin(2,4)
+***** value Operation *****
+f(0)= -2
+f(1)= -4.17798
+f(2)= -9.8052
+f(3)= -23.0755
+````
 
 ### void cal_expression()
 This function is not a class function but a one encapsulated in calculator.h. It is used to read input.txt and do corresponding calculation. The purpose of providing such a function is to simplify the users so that they can only write one code in main code and then get the result they need.
 
 ## Cautions:
 
-1. This code does not distinguish minus ‘-’ and negative ‘-’. Although the code can successfully detect negative numbers, when there is an input like “–exp(X)”, it will have an error. I recommend to write "0-exp(X)".
+1. The code take ‘X’ instead of ‘x’ as independent variable.
 
-2. The code take ‘X’ instead of ‘x’ as independent variable.
-
-3. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an error. The range of limit could be modified by users themselves.
+2. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an error. The range of limit could be modified by users themselves.
   
-4. For input.txt, never change the sentences before ‘:’. You are only allowed to modify expressions and select specific operations you need.
+3. For input.txt, never change the sentences before ‘:’. You are only allowed to modify expressions and select specific operations you need.
   
-5. All functions should be the same as these listed in cmath.
+4. All functions should be the same as these listed in cmath.
   
-6. For integra_0i(), it only works for expressions that have the form as showed in its algorithms.
+5. For integra_0i(), it only works for expressions that have the form as showed in its algorithms.
   
-7. When using zero(), you must take step h seriously since it will affect the results.
+6. When using zero(), you must take step h seriously since it will affect the results.
 
 
 
