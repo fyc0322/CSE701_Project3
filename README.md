@@ -26,9 +26,9 @@ All input information should be listed in “input.txt”. This file has two par
 
 **Integration a b eps**: where Integration indicates that we are going to do integration from a to b with precision eps.
 
-**Get_zero a b h eps**: where Get_zero indicates that we are going to find all the zero values of input formula in the range of a and b with step h and precision eps. Get_zero is based on Bisection method so it needs a step.
+**Get_zero a b h eps**: where Get_zero indicates that we are going to find all the zero values of input formula in the range from a to b with step h and precision eps. Get_zero is based on Bisection method so it needs a step.
 
-**Limit a b  h  eps**: where Limit1 indicates that we are going to find the limit value of formula in given range and other input parameters’ meaning are just like these in Get_zero.
+**Limit a b  h  eps**: where Limit1 indicates that we are going to find the limit value of formula in the given range and other input parameters’ meaning are just like these in Get_zero.
 
 **Integration_0_inf**: Do integration from 0 to infinity.
 
@@ -396,13 +396,11 @@ This function is not a class function but a one encapsulated in calculator.h. It
 
 2. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an error. The range of limit could be modified by users themselves.
   
-3. For input.txt, never change the sentences before ‘:’. You are only allowed to modify expressions and select specific operations you need.
+3. All functions should be the same as these listed in cmath.
   
-4. All functions should be the same as these listed in cmath.
+4. For integra_0i(), it only works for expressions that have the form as showed in its algorithms.
   
-5. For integra_0i(), it only works for expressions that have the form as showed in its algorithms.
-  
-6. When using zero(), you must take step h seriously since it will affect the results.
+5. When using functions concerning step h, be careful that currently the smallest step is set to be 0.001. Users could change this restriction.
 
 
 
