@@ -224,10 +224,10 @@ function at interval -1 to 1 has no zero value.
 ```
 
 ### void limit(double a, double b, double h, double eps):
-This function directly read expression “orig and deri” from class and then find all the limit values of formula “orig” from a to b with step h. if f’(x)<eps, then this x would be detected as a zero point of f’(x), which is deri (the derivative of orig) in class. After finding all the zero values, all points will be printed out to the screen.
+This function directly read expression “orig and deri” from class and then find all the limit values of formula “orig” from a to b with step h. if f’(x)<eps, then this x would be detected as a zero point of f’(X), which is deri (the derivative of orig) in class. After finding all the zero values, all points will be printed out to the screen.
   
 **Algorithms:**
-For f(x), if f’(x)=0, then x is a point in which f(x) will have a limit maximum or minimum value. If there is no f’(x)=0 in the range from a to b, then local maximum and minimum value would be located on boundaries a and b. 
+For f(X), if f’(X)=0, then X is a point in which f(x) will have a limit maximum or minimum value. If there is no f’(X)=0 in the range from a to b, then local maximum and minimum value would be located on boundaries a and b. 
 
 **Examples:**  
 ```
@@ -394,7 +394,7 @@ This function is not a class function but a one encapsulated in calculator.h. It
 
 1. The code take ‘X’ instead of ‘x’ as independent variable.
 
-2. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an invalid input error. The range of the limit could be modified by users themselves.
+2. There is a limit on the value of f(X), when f(X)<1e-15 or f(X)>1e15, the code will throw an invalid input error. The range of the limit could be modified by users themselves.
   
 3. All functions should be in the same format as these listed in cmath.
   
