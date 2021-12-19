@@ -24,6 +24,7 @@ using namespace std;
  * @param ptr_num Number of supported operators.
  * @param fun_num Number of supported functions.
  */
+const int32_t step_limit=3;
 const string::size_type ptr_num = 9;
 const string::size_type fun_num = 24;
 
@@ -136,7 +137,7 @@ map<string, int32_t> funArgCnt{
 };
 
 /**
- * @brief class with strings to store formulas and functions to do mathematical calculations. 
+ * @brief Class with strings to store formulas and functions to do mathematical calculations. 
  */
 class Calculator
 {
@@ -805,7 +806,7 @@ double Calculator::cal_num(const string &cal_expr, double x)
     }
     else
         expr = cal_expr;
-    ss << setiosflags(ios::fixed) << setprecision(3) << x;
+    ss << setiosflags(ios::fixed) << setprecision(step_limit) << x;
     string str_n = ss.str();
     while (expr.find('X') < expr.length())
     {
