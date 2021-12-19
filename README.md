@@ -30,7 +30,7 @@ All input information should be listed in “input.txt”. This file has two par
 
 **Limit a b  h  eps**: where Limit1 indicates that we are going to find the limit value of formula in the given range and other input parameters’ meaning are just like these in Get_zero.
 
-**Integration_0_inf**: Do integration from 0 to infinity.
+**Integration_0_inf**: Do integration from 0 to infinity for formula in the format of f(X)*exp(-X).
 
 **Fourier_coefficients n**: Get the first n coefficients of Fourier series.
 
