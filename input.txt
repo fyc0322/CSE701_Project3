@@ -1,25 +1,25 @@
 /***** Input expressions *****/
 
-f(X)= exp(-X)
+f(X)= -exp(-X)
 
 f'(X)= abs(X)
 
 
 /***** Operations *****/ 
 
-Integration 0  1   0.000001
+#Integration 0  1   0.000001
 
-Get_zero  -1  1  0.1  0.000001
+#Get_zero  -1  1  0.1  0.000001
 
-Limit  -1  1  0.1  0.000001
+#Limit  -1  1  0.1  0.000001
 
-Integration_0_inf
+#Integration_0_inf
 
-Fourier_coefficients  50
+#Fourier_coefficients  50
 
-FFT 6 1 0.5
+#FFT 6 1 0.5
 
-Random 1.0  1.5   50
+#Random 1.0  1.5   50
 
 Value 0 4  1
 
