@@ -18,7 +18,7 @@ Codes for “Mathematical Calculator” are written in two files – calculator.
 ## Input:
 '#' means this line will be ignored.
 
- "/***** Input expressions *****/" means you should give your formulas after this.
+ "/***** Input expressions *****/" means you should give your formulas after this sentence.
  
  "/***** Operations *****/" means followings are the operations you want to do.
 
