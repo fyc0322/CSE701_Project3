@@ -396,7 +396,7 @@ This function is not a class function but a one encapsulated in calculator.h. It
 
 2. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an invalid input error. The range of the limit could be modified by users themselves.
   
-3. All functions should be the same as these listed in cmath.
+3. All functions should be in the same format as these listed in cmath.
   
 4. For integra_0i(), it only works for expressions that have the form as showed in its algorithms.
   
