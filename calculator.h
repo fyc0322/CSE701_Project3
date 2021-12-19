@@ -21,6 +21,7 @@
 using namespace std;
 
 /**
+ * @param step_limit The minimal step length should be 10^-3.
  * @param ptr_num Number of supported operators.
  * @param fun_num Number of supported functions.
  */
