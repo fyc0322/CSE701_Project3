@@ -394,7 +394,7 @@ This function is not a class function but a one encapsulated in calculator.h. It
 
 1. The code take ‘X’ instead of ‘x’ as independent variable.
 
-2. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an error. The range of limit could be modified by users themselves.
+2. There is a limit on the value of f(x), when f(x)<1e-15 or f(x)>1e15, the code will throw an invalid input error. The range of the limit could be modified by users themselves.
   
 3. All functions should be the same as these listed in cmath.
   
